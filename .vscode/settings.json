@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "jrb.h": "c",
+        "dllist.h": "c",
+        "conio.h": "c"
+    }
+}
