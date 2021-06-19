@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "dllist.h"
 #include "huffman.h"
+#include "graph.h"
+#include "dllist.h"
 
 typedef struct {
    Graph graph;
