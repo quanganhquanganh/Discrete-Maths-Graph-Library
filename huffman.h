@@ -1,6 +1,5 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
-#include "graph.h"
 
 typedef struct {
 	int size;
