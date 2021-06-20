@@ -4,7 +4,7 @@
 #include <string.h>
 
 #include "graph.h"
-#include "dllist.h"
+#include "../libfdr/dllist.h"
 
 #define INFINITIVE_VALUE  10000000
 

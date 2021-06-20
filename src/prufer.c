@@ -1,7 +1,7 @@
 #include "prufer.h"
 
 #include "graph.h"
-#include "dllist.h"
+#include "../libfdr/dllist.h"
 
 void pruferInputGraph(FILE* f, Graph g) {
     int so_dinh = -1, id1 = -1, id2 = -1;

@@ -5,7 +5,7 @@
 
 #include "huffman.h"
 #include "graph.h"
-#include "dllist.h"
+#include "../libfdr/dllist.h"
 
 typedef struct {
    Graph graph;
@@ -31,23 +31,6 @@ void goLeft(int* cursor);
 void goRight(int* cursor);
 HuffmanTreeArray makeHuffmanTreeArray(Coding htable[]);
 void destroyHuffmanTreeArray(HuffmanTreeArray htree);
-
-int main()
-{
-
-   char buffer[1000] = "abcadsaglkdlgvnxvdlkgajedlk dsgdsagd";
-   char huffman[1000];
-   Coding htable[256];
-   int nbit, bytes;
-   nbit = compress(buffer, huffman, htable);
-   bytes = decompress(huffman, nbit, htable, buffer);
-   buffer[bytes] = '\0';
-   printf("%s\n", buffer);
-
-   // printf("file \n");
-   // compressFile("hello.txt", "huffman.dat");
-   // decompressFile("huffman.dat", "hello_new.txt");
-}
 
 void add2Queue(PriorityQueue q, int graphnode, int frequence) {
 	printf("-------------------------- \n");

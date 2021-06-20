@@ -1,6 +1,6 @@
 #ifndef GRAPH_LIB
 #define GRAPH_LIB
-#include "jrb.h"
+#include "../libfdr/jrb.h"
 
 #define INFINITIVE_VALUE  10000000
 
