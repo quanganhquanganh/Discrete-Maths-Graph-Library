@@ -6,7 +6,7 @@
 #include "graph.h"
 #include "../libfdr/dllist.h"
 
-#define INFINITIVE_VALUE  10000000
+#define oo  10000000
 
 
 Graph createGraph()
@@ -36,7 +36,7 @@ char *getVertex(Graph g, int id)
 void addEdge(Graph graph, int v1, int v2, double weight)
 {
      JRB node, tree;
-     if (getEdgeValue(graph, v1, v2)==INFINITIVE_VALUE)
+     if (getEdgeValue(graph, v1, v2)==oo)
      {
         node = jrb_find_int(graph.edges, v1);
         if (node==NULL) {
@@ -71,11 +71,11 @@ double getEdgeValue(Graph graph, int v1, int v2)
     JRB node, tree;
     node = jrb_find_int(graph.edges, v1);
     if (node==NULL)
-       return INFINITIVE_VALUE;
+       return oo;
     tree = (JRB) jval_v(node->val);
     node = jrb_find_int(tree, v2);
     if (node==NULL)
-       return INFINITIVE_VALUE;
+       return oo;
     else
        return jval_d(node->val);       
 }
@@ -263,7 +263,7 @@ Dllist topologicalSort(Graph g, int* out, int* n) {
    }
 }
 
-double shortestPath(Graph g, int s, int t, int* path, int*length)
+double dijkstra(Graph g, int s, int t, int* path, int* length)
 {
    double distance[1000], min, w, total;
    int previous[1000], tmp[1000];
@@ -271,7 +271,7 @@ double shortestPath(Graph g, int s, int t, int* path, int*length)
    Dllist ptr, queue, node;
 
    for (i=0; i<1000; i++)
-       distance[i] = INFINITIVE_VALUE;
+       distance[i] = oo;
    distance[s] = 0;
    previous[s] = s;
        
@@ -281,7 +281,7 @@ double shortestPath(Graph g, int s, int t, int* path, int*length)
    while ( !dll_empty(queue) )
    {
       // get u from the priority queue   
-      min = INFINITIVE_VALUE;   
+      min = oo;   
       dll_traverse(ptr, queue)
       {
           u = jval_i(ptr->val);              
@@ -309,7 +309,7 @@ double shortestPath(Graph g, int s, int t, int* path, int*length)
       }
    }
    total = distance[t]; 
-   if (total != INFINITIVE_VALUE)
+   if (total != oo)
    {
        tmp[0] = t;
        n = 1;              
@@ -321,6 +321,51 @@ double shortestPath(Graph g, int s, int t, int* path, int*length)
        for (i=n-1; i>=0; i--)
            path[n-i-1] = tmp[i];
        *length = n;                
+   }
+   return total;   
+}
+
+double bellmanford(Graph g, int s, int t, int* path, int* length) {
+   double distance[1000], total;
+   int predecessor[1000], tmp[1000], out[100];
+   int i, j;
+   int u, v, w;
+   int v_num, n;
+   JRB vertex, edge;
+
+   for(i = 0; i < 1000; i++)
+      distance[i] = oo;
+   distance[s] = 0;
+
+   v_num = 0;
+   jrb_traverse(vertex, g.vertices)
+      v_num++;
+
+   for(i = 0; i < (v_num - 1); ++i)
+      for(u = 0; u < v_num; ++u) {
+         n = outdegree(g, j, out);
+         for(j = 0; j < n; ++j) {
+            v = out[j];
+            w = getEdgeValue(g, u, v);
+            if ( distance[v] > distance[u] + w ) {    
+               distance[v] = distance[u] + w;
+               previous[v] = u;
+            }
+         }
+      }
+   total = distance[t]; 
+   if (total != oo)
+   {
+      tmp[0] = t;
+      n = 1;              
+      while (t != s)
+      {
+            t = previous[t];
+            tmp[n++] = t;
+      }
+      for (i=n-1; i>=0; i--)
+            path[n-i-1] = tmp[i];
+      *length = n;                
    }
    return total;   
 }

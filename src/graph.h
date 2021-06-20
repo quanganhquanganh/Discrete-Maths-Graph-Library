@@ -20,7 +20,8 @@ int indegree(Graph graph, int v, int* output);
 int outdegree(Graph graph, int v, int* output);
 void BFS(Graph graph, int start, int stop, void (*func)(int));
 void DFS(Graph graph, int start, int stop, void (*func)(int));
-double shortestPath(Graph graph, int s, int t, int* path, int*length);
+double dijkstra(Graph graph, int s, int t, int* path, int* length);
+double bellmanford(Graph graph, int s, int t, int* path, int* length);
 void dropGraph(Graph graph);
 int DAG(Graph graph);
 #endif /* Graph Library */
