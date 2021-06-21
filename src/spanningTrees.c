@@ -79,4 +79,48 @@ int primAlgo(Graph g, Graph T) {
         }
         free(entry);
     }
+    return 1;
+}
+
+int kruskalAlgo(Graph g, Graph T)
+{
+    int i, u, v, a, b;
+    int v_num;
+    Dllist queue;
+    double min, *entry;
+    JRB vertex;
+
+    v_num = 0;
+    jrb_traverse(vertex, g.edges)
+        v_num++;
+
+    //Add minimum weight edge
+    queue = getAllEdges(g);
+
+    for (i = 0; i < v_num; ++i)
+    {
+        //Find minimum weight edge incident to any of the T.vertices
+        entry = jval_v(dequeueMinIncident(queue, g));
+        if (!entry)
+            return 0;
+        min = entry[0];
+        u = entry[1];
+        v = entry[2];
+        //Add edge to T and test for acycles 
+        addVertex(T, u, "u");
+        addVertex(T, v, "v");
+        addEdge(T, u, v, min);
+        addEdge(T, v, u, min);
+        if (UAG(T))
+        { //Acycle(s) exists
+            removeEdge(T, u, v);
+            removeEdge(T, v, u);
+        }
+        else
+        { //No acycle found.
+            printf("#%d choice: %d -- %d\n", i + 1, u, v);
+        }
+        free(entry);
+    }
+    return 1;
 }
