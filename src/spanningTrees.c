@@ -49,8 +49,8 @@ int primAlgo(Graph g, Graph T) {
     v = entry[2];
     addEdge(T, u, v, min);
     addEdge(T, v, u, min);
-    addVertex(T, u, "v"); 
-    addVertex(T, v, "v");
+    addVertex(T, u, getVertex(g, u)); 
+    addVertex(T, v, getVertex(g, v));
     printf("#%d choice: %d -- %d\n", 1, u, v);
 
     for(i = 0; i < v_num - 2; ++i) {
@@ -65,8 +65,8 @@ int primAlgo(Graph g, Graph T) {
         addEdge(T, v, u, min);
         a = getVertex(T, u)? 0 : 1;
         b = getVertex(T, v)? 0 : 1;
-        addVertex(T, u, "u");
-        addVertex(T, v, "v");
+        addVertex(T, u, getVertex(g, u));
+        addVertex(T, v, getVertex(g, v));
         if(UAG(T)) {//Acycle(s) exists
             i--;
             removeEdge(T, u, v);
@@ -107,8 +107,8 @@ int kruskalAlgo(Graph g, Graph T)
         u = entry[1];
         v = entry[2];
         //Add edge to T and test for acycles 
-        addVertex(T, u, "u");
-        addVertex(T, v, "v");
+        addVertex(T, u, getVertex(g, u));
+        addVertex(T, v, getVertex(g, v));
         addEdge(T, u, v, min);
         addEdge(T, v, u, min);
         if (UAG(T))

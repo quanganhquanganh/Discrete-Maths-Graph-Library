@@ -6,8 +6,6 @@
 #include "graph.h"
 #include "../libfdr/dllist.h"
 
-#define oo 10000000
-
 
 Graph createGraph()
 {
