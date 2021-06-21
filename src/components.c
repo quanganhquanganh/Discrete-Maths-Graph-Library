@@ -1,5 +1,12 @@
 #include "components.h"
 #include "../libfdr/dllist.h"
+#include <stdlib.h>
+#include <string.h>
+
+int Min(int a, int b)
+{
+    return a < b ? a : b;
+}
 
 void countComponentsUtil(Graph graph, int start, int stop, int *visited)
 {
@@ -33,7 +40,7 @@ void countComponentsUtil(Graph graph, int start, int stop, int *visited)
 int countConnected(Graph g) {
     JRB node;
     int dem;
-    int visited[oo];
+    int visited[6000];
     memset(visited, 0, sizeof(visited));
     jrb_traverse(node, g.vertices)
     {
