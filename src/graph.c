@@ -404,13 +404,26 @@ double bellmanford(Graph g, int s, int t, int* path, int* length) {
 
    for(i = 0; i < (v_num - 1); ++i)
       for(u = 0; u < v_num; ++u) {
-         n = outdegree(g, j, out);
+         n = outdegree(g, u, out);
          for(j = 0; j < n; ++j) {
             v = out[j];
             w = getEdgeValue(g, u, v);
             if ( distance[v] > distance[u] + w ) {    
                distance[v] = distance[u] + w;
                predecessor[v] = u;
+            }
+         }
+      }
+
+   for(u = 0; u < v_num; ++u) {
+         n = outdegree(g, u, out);
+         for(j = 0; j < n; ++j) {
+            v = out[j];
+            w = getEdgeValue(g, u, v);
+            if ( distance[v] > distance[u] + w ) {    
+               printf("Graph contains a negative-weight cycle.\n");
+               *length = -1;
+               return -1;
             }
          }
       }
