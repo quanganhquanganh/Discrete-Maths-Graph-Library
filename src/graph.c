@@ -401,6 +401,7 @@ double dijkstra(Graph g, int s, int t, int* path, int* length)
              node = ptr;
           }                 
       }
+      u = jval_i(node->val);
       dll_delete_node(node);
       
       if (u == t) break; // stop at t
