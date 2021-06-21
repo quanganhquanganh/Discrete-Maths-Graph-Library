@@ -6,7 +6,7 @@
 #include "graph.h"
 #include "../libfdr/dllist.h"
 
-#define oo  10000000
+#define oo 10000000
 
 
 Graph createGraph()
@@ -31,7 +31,17 @@ char *getVertex(Graph g, int id)
         return NULL;
      else                
         return jval_s(node->val);
-}     
+}
+char *removeVertex(Graph g, int id) {
+   JRB node = jrb_find_int(g.vertices, id);
+   if (node==NULL) 
+      return NULL;
+   else {
+      char* val = jval_s(node->val);
+      jrb_delete_node(node);
+      return jval_s(node->val);
+   }
+}
 
 void addEdge(Graph graph, int v1, int v2, double weight)
 {
@@ -187,6 +197,57 @@ void DFS(Graph graph, int start, int stop, void (*func)(int))
           }
       }
    }                            
+}
+
+int UAGUtil(Graph g, int v, int visited[], int parent)
+{
+   // Mark the current node as visited
+    visited[v] = 1;
+ 
+    // Recur for all the vertices
+    // adjacent to this vertex
+    int output[100]; 
+    int n = outdegree(g, v, output);
+    for(int i = 0; i < n; ++i) {
+       // If an adjacent vertex is not visited,
+        //then recur for that adjacent
+        if (!visited[output[i]])
+        {
+           if (UAGUtil(g, output[i], visited, v))
+              return 1;
+        }
+ 
+        // If an adjacent vertex is visited and
+        // is not parent of current vertex,
+        // then there exists a cycle in the graph.
+        else if (output[i] != parent)
+           return 1;
+    }
+    return 0;
+}
+ 
+// Returns true if the graph contains
+// a cycle, else false.
+int UAG(Graph g)
+{
+   JRB node;
+    // Mark all the vertices as not
+    // visited and not part of recursion
+    // stack
+   int visited[1000] = {0};
+ 
+    // Call the recursive helper
+    // function to detect cycle in different
+    // DFS trees
+   jrb_traverse(node, g.vertices)
+   {
+      if (!visited[node->key.i])
+      {
+         if (UAGUtil(g, node->key.i, visited, -1))
+            return 1;
+      }
+   }
+   return 0;
 }
 
 int DAG(Graph graph)
@@ -349,7 +410,7 @@ double bellmanford(Graph g, int s, int t, int* path, int* length) {
             w = getEdgeValue(g, u, v);
             if ( distance[v] > distance[u] + w ) {    
                distance[v] = distance[u] + w;
-               previous[v] = u;
+               predecessor[v] = u;
             }
          }
       }
@@ -360,7 +421,7 @@ double bellmanford(Graph g, int s, int t, int* path, int* length) {
       n = 1;              
       while (t != s)
       {
-            t = previous[t];
+            t = predecessor[t];
             tmp[n++] = t;
       }
       for (i=n-1; i>=0; i--)

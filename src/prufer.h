@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 
-typedef struct Graph Graph;
+#include "graph.h"
 
 void pruferInputGraph(FILE* f, Graph g);
 void prufer(Graph g, int start, int verNum, int* code, int* length);

@@ -2,6 +2,7 @@
     "files.associations": {
         "jrb.h": "c",
         "dllist.h": "c",
-        "conio.h": "c"
+        "conio.h": "c",
+        "spanningtrees.h": "c"
     }
 }

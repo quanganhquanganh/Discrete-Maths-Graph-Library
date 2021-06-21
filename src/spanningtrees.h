@@ -3,7 +3,7 @@
 
 #include "graph.h"
 
-void primAlgo(Graph g, Graph spanning_tree);
-void kruskalAlgo(Graph g, Graph spanning_tree);
+int primAlgo(Graph g, Graph spanning_tree);
+int kruskalAlgo(Graph g, Graph spanning_tree);
 
 #endif /* Spanning Tree header */
