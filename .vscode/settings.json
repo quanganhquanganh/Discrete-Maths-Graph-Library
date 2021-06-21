@@ -3,6 +3,7 @@
         "jrb.h": "c",
         "dllist.h": "c",
         "conio.h": "c",
-        "spanningtrees.h": "c"
+        "spanningtrees.h": "c",
+        "components.h": "c"
     }
 }

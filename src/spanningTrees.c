@@ -4,6 +4,7 @@
 #include <stdlib.h>
 
 Dllist getAllEdges(Graph g) {
+    //A dllist of unique edges
     Graph usedEdges = createGraph();
     JRB child, father;
     double* entry;
@@ -27,6 +28,7 @@ Dllist getAllEdges(Graph g) {
 }
 
 Jval dequeueMinIncident(Dllist q, Graph g) {
+    //Get minimum weight edge incident to any of the g.edges
     Dllist ptr, node = NULL;
     double min, *entry;
     Jval val;
@@ -62,6 +64,7 @@ int primAlgo(Graph g, Graph T) {
     jrb_traverse(vertex, g.vertices)
         v_num++;
     
+    //Add minimum weight edge
     queue = getAllEdges(g);
     entry = jval_v(dequeueMinIncident(queue, g));
     if(!entry) return 0;
@@ -73,25 +76,29 @@ int primAlgo(Graph g, Graph T) {
     addVertex(T, u, "v"); 
     addVertex(T, v, "v");
     printf("#%d choice: %d -- %d\n", 1, u, v);
+
     for(i = 0; i < v_num - 2; ++i) {
+        //Find minimum weight edge incident to any of the T.vertices
         entry = jval_v(dequeueMinIncident(queue, T));
         if(!entry) return 0;
         min = entry[0];
         u = entry[1];
         v = entry[2];
+        //Add edge to T and test for acycles
         addEdge(T, u, v, min);
         addEdge(T, v, u, min);
         a = getVertex(T, u)? 0 : 1;
         b = getVertex(T, v)? 0 : 1;
         addVertex(T, u, "u");
         addVertex(T, v, "v");
-        if(UAG(T)) {
+        if(UAG(T)) {//Acycle(s) exists
             i--;
             removeEdge(T, u, v);
             removeEdge(T, v, u);
             if(a) removeVertex(T, u);
             if(b) removeVertex(T, v);
-        } else {
+            //Remove the added edge and rerun this loop
+        } else {//No acycle found.
             printf("#%d choice: %d -- %d\n", i + 2, u, v);
         }
         free(entry);
