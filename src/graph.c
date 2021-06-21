@@ -43,6 +43,30 @@ char *removeVertex(Graph g, int id) {
    }
 }
 
+Dllist getAllEdges(Graph g) {
+    //A dllist of unique edges
+    Graph usedEdges = createGraph();
+    JRB child, father;
+    double* entry;
+    int f, c;
+    Dllist list = new_dllist();
+    jrb_traverse(father, g.edges)
+        jrb_traverse(child, ((JRB)jval_v(father->val))) {
+            f = jval_i(father->key);
+            c = jval_i(child->key);
+            if(getEdgeValue(usedEdges, c, f) == oo) {
+                addEdge(usedEdges, f, c, 1);
+                entry = malloc(sizeof(double[3]));
+                entry[0] = getEdgeValue(g, f, c);
+                entry[1] = (double)f;
+                entry[2] = (double)c;
+                dll_append(list, new_jval_v(entry));
+            }
+        }
+    dropGraph(usedEdges);
+    return list;
+}
+
 void addEdge(Graph graph, int v1, int v2, double weight)
 {
      JRB node, tree;
@@ -104,6 +128,33 @@ int setEdgeValue(Graph graph, int v1, int v2, double val)
        node->val = new_jval_d(val);
        return 1;
     }  
+}
+
+int remove_duplicate(int arr[], int n)
+{
+   if (n == 0 || n == 1)
+      return n;
+
+   int* temp = malloc(sizeof(int) * n);
+
+   int j = 0;
+   int i;
+   for (i = 0; i < n - 1; i++)
+   if (arr[i] != arr[i + 1])
+      temp[j++] = arr[i];
+   temp[j++] = arr[n - 1];
+
+   for (i = 0; i < j; i++)
+      arr[i] = temp[i];
+   free(temp);
+   return j;
+}
+
+int getAdjacentVertices(Graph g, int v, int* output) {
+   int inn, outn;
+   inn = indegree(g, v, output);
+   outn = outdegree(g, v, output + inn);
+   return remove_duplicate(output, inn + outn);
 }
 
 int indegree (Graph graph, int v, int* output)

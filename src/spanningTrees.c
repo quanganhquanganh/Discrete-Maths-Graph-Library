@@ -3,30 +3,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Dllist getAllEdges(Graph g) {
-    //A dllist of unique edges
-    Graph usedEdges = createGraph();
-    JRB child, father;
-    double* entry;
-    int f, c;
-    Dllist list = new_dllist();
-    jrb_traverse(father, g.edges)
-        jrb_traverse(child, ((JRB)jval_v(father->val))) {
-            f = jval_i(father->key);
-            c = jval_i(child->key);
-            if(getEdgeValue(usedEdges, c, f) == oo) {
-                addEdge(usedEdges, f, c, 1);
-                entry = malloc(sizeof(double[3]));
-                entry[0] = getEdgeValue(g, f, c);
-                entry[1] = (double)f;
-                entry[2] = (double)c;
-                dll_append(list, new_jval_v(entry));
-            }
-        }
-    dropGraph(usedEdges);
-    return list;
-}
-
 Jval dequeueMinIncident(Dllist q, Graph g) {
     //Get minimum weight edge incident to any of the g.edges
     Dllist ptr, node = NULL;

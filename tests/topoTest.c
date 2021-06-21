@@ -17,4 +17,5 @@ int main() {
     printf("The topological order:\n");
     for (int i=0; i<n; i++)
         printf("%s\n", getVertex(g, output[i]));
+    dropGraph(g);
 }
