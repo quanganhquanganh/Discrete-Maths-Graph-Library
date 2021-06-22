@@ -327,14 +327,14 @@ int DAG(Graph graph)
               {
                   v = output[i];
                   if ( v == start ) // cycle detected 
-                     return 0;
+                     return u;
                   if (!visited[v])    
                      dll_append(stack, new_jval_i(v));
               }
           }           
        }
    }
-   return 1; // no cycle    
+   return -1; // no cycle    
 }
 
 void inDegArr(Graph g, int* arr) {
@@ -346,7 +346,7 @@ void inDegArr(Graph g, int* arr) {
    }
 }
 
-Dllist topologicalSort(Graph g, int* out, int* n) {
+void topologicalSort(Graph g, int* out, int* n) {
     Dllist node, queue;
     JRB vertex;
     queue = new_dllist();

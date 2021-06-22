@@ -5,7 +5,6 @@
 void pruferInputGraph(FILE* f, Graph g) {
     int so_dinh = -1, id1 = -1, id2 = -1;
     fscanf(f, "%d", &so_dinh);
-    Graph g = createGraph(so_dinh + 1);
     for (int i = 0; i < so_dinh; i++)
     {
         fscanf(f, "%d %d", &id1, &id2);
