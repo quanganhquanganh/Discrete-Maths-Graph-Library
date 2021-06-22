@@ -8,7 +8,7 @@ int main() {
     addVertex(g, 4, "CS311"); addVertex(g, 5, "MATH300");
     addEdge(g, 0, 1, 1); addEdge(g, 0, 2, 1);
     addEdge(g, 1, 3, 1); addEdge(g, 5, 4, 1); addEdge(g, 3, 4, 1);
-    if (!DAG(g)) {
+    if (DAG(g) != -1) {
         printf("Can not make topological sort\n");
         return 1; }
     int output[1000];
