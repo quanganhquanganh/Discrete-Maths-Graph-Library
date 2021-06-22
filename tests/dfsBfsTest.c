@@ -21,7 +21,7 @@ int main() {
     addEdge(g, 4, 2, 1);
     addEdge(g, 5, 4, 1);
 
-    BFS(g, 0, -1, addToArr);
+    BFS(g, 3, 5, addToArr);
     for(int j = 0; j < i; ++j)
         printf("%4d", arr[j]);
 }

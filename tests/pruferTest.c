@@ -4,7 +4,10 @@
 int main() {
     FILE* f = fopen("../files/input.txt", "r");
     Graph g = createGraph();
-    pruferInputGraph(f, g);
+    int n = pruferInputGraph(f, g);
     int code[100], length;
-    prufer(g, )
+    prufer(g, code, &length);
+    for(int i = 0; i < length; ++i) {
+        printf("%4d", code[i]);
+    }
 }

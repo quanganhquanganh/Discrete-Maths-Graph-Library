@@ -5,6 +5,7 @@
         "conio.h": "c",
         "spanningtrees.h": "c",
         "components.h": "c",
-        "graph.h": "c"
+        "graph.h": "c",
+        "prufer.h": "c"
     }
 }
