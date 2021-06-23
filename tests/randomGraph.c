@@ -37,6 +37,11 @@ void randomUndirectedGraphInit(Graph g, int v_num, int e_num) {
         sprintf(buff, "%d", i);
         addVertex(g, i++, buff);
     }
+    int sd = 0;
+    JRB ptr;
+    jrb_traverse(ptr, g.vertices) sd++;
+    printf("%d\n", sd);
+    
     for(int j = 0; j < e_num; ++j) {
         int l, n;
         l = rand() % v_num;

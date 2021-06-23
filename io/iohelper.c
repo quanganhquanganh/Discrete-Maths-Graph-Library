@@ -1,7 +1,7 @@
 #include "iodot.h"
 
 const char *color[]={
-    "dimgray","red","green","blue","yellow","purple",
+    "red","green","blue","yellow","purple",
     "orange","aqua","bisque","darkolivegreen1","gray50","maroon","wheat3",
     "blueviolet", "chocolate", "cyan", "darkgreen", "darkorange", "firebrick",
     "lawngreen", "gold", "darkkhaki", "salmon"

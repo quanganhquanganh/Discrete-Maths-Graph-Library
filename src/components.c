@@ -105,13 +105,20 @@ int countStronglyConnected(Graph g, int LOW[], int n)
     Dllist temp, stack;
 
     stack = new_dllist();
-
+    jrb_traverse(node, g.vertices)
+    {
+        addEdge(g, node->key.i, node->key.i, 1);
+    }
     jrb_traverse(node, g.vertices)
     {
         if (DIST[node->key.i] == -1)
         {
             TarjanDFS(g, node->key.i, stack, LOW);
         }
+    }
+    jrb_traverse(node, g.vertices)
+    {
+        removeEdge(g, node->key.i, node->key.i);
     }
     return sscCount;
 }
