@@ -7,7 +7,7 @@
 #define MAX_DIST 20
 
 void randomDirectedGraphInit(Graph g, int v_num, int e_num) {
-    srand(time(NULL));
+    srand(time(NULL)); double val;
     v_num = (v_num > MAX_V_NUM)? MAX_V_NUM : v_num;
     e_num = (e_num > MAX_E_NUM)? MAX_E_NUM : e_num;
     int i = 0;
@@ -21,8 +21,10 @@ void randomDirectedGraphInit(Graph g, int v_num, int e_num) {
         l = rand() % v_num;
         do {
             n = rand() % v_num;
-        } while(getEdgeValue(g, l, n) != oo && getEdgeValue(g, n, l) != oo);
-        addEdge(g, l, n, rand() % 20 + 1);
+        } while((getEdgeValue(g, l, n) != oo) || (getEdgeValue(g, n, l) != oo) || (n==l));
+        val = rand() % 20 + 1;
+        addEdge(g, l, n, val);
+        printf("Random edge: %d -- %d: %lf\n", l, n, val);
     }
 }
 
