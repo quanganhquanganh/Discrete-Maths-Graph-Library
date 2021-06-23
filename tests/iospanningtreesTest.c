@@ -1,12 +1,11 @@
-#include "../src/spanningTrees.h"
-#include <stdio.h>
+#include "../io/iodot.h"
 
 void primTest() {
     Graph g = createGraph(), tree = createGraph();
-    addVertex(g, 0, "San Francisco"); 
+    addVertex(g, 0, "San_Francisco");
     addVertex(g, 1, "Chicago");
     addVertex(g, 2, "Denver");
-    addVertex(g, 3, "New York");
+    addVertex(g, 3, "New_York");
     addVertex(g, 4, "Atlanta");
     addEdge(g, 0, 1, 1200);
     addEdge(g, 0, 2, 900);
@@ -28,16 +27,16 @@ void primTest() {
     addEdge(g, 3, 2, 1600);
     addEdge(g, 4, 2, 1400);
     addEdge(g, 4, 3, 800);
-    primAlgo(g, tree);
+    primOut(g, tree, "../files/prim");
     dropGraph(g); dropGraph(tree);
 }
 
 void kruskalTest() {
     Graph g = createGraph(), tree = createGraph();
-    addVertex(g, 0, "San Francisco"); 
+    addVertex(g, 0, "San_Francisco");
     addVertex(g, 1, "Chicago");
     addVertex(g, 2, "Denver");
-    addVertex(g, 3, "New York");
+    addVertex(g, 3, "New_York");
     addVertex(g, 4, "Atlanta");
     addEdge(g, 0, 1, 1200);
     addEdge(g, 0, 2, 900);
@@ -59,7 +58,7 @@ void kruskalTest() {
     addEdge(g, 3, 2, 1600);
     addEdge(g, 4, 2, 1400);
     addEdge(g, 4, 3, 800);
-    kruskalAlgo(g, tree);
+    kruskalOut(g, tree, "../files/kruskal");
     dropGraph(g); dropGraph(tree);
 }
 

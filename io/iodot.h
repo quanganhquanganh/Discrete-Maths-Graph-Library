@@ -4,10 +4,15 @@
 #include "../src/graph.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define DOT "dot"
+#define NEATO "neato"
+#define CIRCO "circo"
 
 extern const char *color[];
-
 extern const int MAX_COLOR;
+const char* layout;
 
 void countComponentsOut(Graph g, const char* filename);
 void countStronglyComponentsOut(Graph g, const char* filename);
@@ -20,8 +25,8 @@ void dijkstraOut(Graph g, const char* filename);
 void bellmanfordOut(Graph g, const char* filename);
 void dagOut(Graph g, const char* filename);
 void topoOut(Graph g, const char* filename);
-void primOut(Graph g, const char* filename);
-void kruskalOut(Graph g, const char* filename);
+void primOut(Graph g, Graph tree, const char* filename);
+void kruskalOut(Graph g, Graph tree, const char* filename);
 
 FILE* open_file(const char* n, const char* mode);
 

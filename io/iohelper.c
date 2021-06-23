@@ -17,9 +17,11 @@ FILE* open_file(const char* n, const char* mode) {
     return fp;
 }
 
-void dot_to_pdf(const char* dot, const char* pdf) {
+void dot_to_pdf(const char* dot, const char* pdf) {;
+    extern const char* layout;
     char command[100];
-    sprintf(command, "dot -Tpdf %s -o %s", dot, pdf);
+    sprintf(command, "%s -Tpdf %s -o %s", layout, dot, pdf);
+    printf("Running: %s...\n", command);
     system(command);
     system("pause");
 }

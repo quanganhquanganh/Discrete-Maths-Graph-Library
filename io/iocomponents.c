@@ -1,6 +1,5 @@
 #include "iodot.h"
-#include "../components.c"
-#include <string.h>
+#include "../src/components.c"
 
 void putColors(int vertices[], int n, int color) {
     //Color must be other than 1
@@ -9,6 +8,7 @@ void putColors(int vertices[], int n, int color) {
 }
 
 void countComponentsOut(Graph g, const char* filename) {
+    layout = DOT;
     char dotname[100];
     char pdfname[100];
     

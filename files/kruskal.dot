@@ -1,0 +1,17 @@
+digraph G {
+San_Francisco [fillcolor=green, style=filled];
+Chicago [fillcolor=red, style=filled];
+Chicago -> San_Francisco [dir=none] [label = 1200][style =bold] [color =red ];
+Denver [fillcolor=blue, style=filled];
+Denver -> San_Francisco [dir=none] [label = 900][style =bold] [color =red ];
+Denver -> Chicago [dir=none] [label = 1300];
+New_York [fillcolor=yellow, style=filled];
+New_York -> San_Francisco [dir=none] [label = 2000];
+New_York -> Chicago [dir=none] [label = 1000];
+New_York -> Denver [dir=none] [label = 1600];
+Atlanta [fillcolor=pink, style=filled];
+Atlanta -> San_Francisco [dir=none] [label = 2200];
+Atlanta -> Chicago [dir=none] [label = 700][style =bold] [color =red ];
+Atlanta -> Denver [dir=none] [label = 1400];
+Atlanta -> New_York [dir=none] [label = 800][style =bold] [color =red ];
+}

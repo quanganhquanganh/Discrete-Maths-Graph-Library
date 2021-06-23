@@ -1,7 +1,9 @@
 #include "iodot.h"
 #include "../src/huffman.c"
 
+
 void huffmanOut(const char* buffer, const char* output) {
+    layout = DOT;
     HuffmanTree htree;
     JRB node, ptr;
 	int i, k, n, nbit, size, output1[5], output2[5];
