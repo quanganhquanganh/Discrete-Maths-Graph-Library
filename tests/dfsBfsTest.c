@@ -1,4 +1,7 @@
 #include "../src/graph.h"
+#include "../src/components.h"
+#include "../io/iodot.h"
+#include "randomGraph.c"
 #include <stdio.h>
 
 int arr[100], i = 0;
@@ -7,6 +10,7 @@ void addToArr(int m) {
 }
 
 int main() {
+    /*
     Graph g = createGraph();
     addEdge(g, 0, 1, 1);
     addEdge(g, 1, 2, 1);
@@ -21,7 +25,13 @@ int main() {
     addEdge(g, 4, 2, 1);
     addEdge(g, 5, 4, 1);
 
-    BFS(g, 3, 5, addToArr);
+    
+    */
+    Graph g = createGraph();
+    randomUndirectedGraphInit(g, 10, 10);
+    BFS(g, 0, -1, addToArr);
     for(int j = 0; j < i; ++j)
         printf("%4d", arr[j]);
+    printf("\n");
+    countComponentsOut(g, "../files/randomComponents");
 }
