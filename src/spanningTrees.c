@@ -22,6 +22,7 @@ Jval dequeueMinIncident(Dllist q, Graph g) {
                 node = ptr;
             }          
     }
+    if (node == NULL) return new_jval_v(NULL);
     val = node->val;
     entry = jval_v(val);
     dll_delete_node(node);
