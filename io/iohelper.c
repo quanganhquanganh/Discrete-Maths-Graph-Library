@@ -12,7 +12,7 @@ FILE* open_file(const char* n, const char* mode) {
     FILE* fp = fopen(n, mode);
     if(fp == NULL){
         printf("Error opening file with designation \"%s\" in local directory.\n", n);
-        exit(0);
+        exit(1);
     }
     return fp;
 }

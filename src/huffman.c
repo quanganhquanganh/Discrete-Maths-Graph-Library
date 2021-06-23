@@ -58,7 +58,7 @@ HuffmanTree makeHuffman(int fTable[]) {
 	HuffmanTree	hTree;
 	int i;
 	Dllist n1, n2;
-
+	char buff[2]; buff[1] = 0;
 	PriorityQueue queue = new_dllist();
 	hTree.graph = createGraph();
 
@@ -66,7 +66,8 @@ HuffmanTree makeHuffman(int fTable[]) {
 		if (fTable[i]) {
 			// make new graphNode to add to the priority queue
 			lastNodeID++;
-			addVertex(hTree.graph, lastNodeID, i);
+			buff[0] = i;
+			addVertex(hTree.graph, lastNodeID, buff);
 			add2Queue(queue, lastNodeID, fTable[i]);
 			printf("last %d %c %d\n", lastNodeID, i, fTable[i]);
 		}
@@ -86,7 +87,8 @@ HuffmanTree makeHuffman(int fTable[]) {
 		if ( n2==queue ) break;
 		// add new node in the graph
 		lastNodeID++;
-		addVertex(hTree.graph, lastNodeID, -1);
+		buff[0] = -1;
+		addVertex(hTree.graph, lastNodeID, buff);
 		printf("id1 %d \n", dll_val(n1).iarray[0]);
 		addEdge(hTree.graph, lastNodeID, dll_val(n1).iarray[0], 0); 
 		printf("id2 %d \n", dll_val(n2).iarray[0]);
@@ -113,14 +115,14 @@ void getCode(int node, Graph g, int len, char code[], Coding htable[])
 {
 	int ch, k, i;
 	int output[10];
-	ch = getVertex(g, node);
+	ch = getVertex(g, node)[0];
 	if (ch != -1) {
 		htable[ch].size = len;
 		memcpy(htable[ch].bits, code, len);	
 	} else {
 		k = outdegree(g, node, output);
 		for (i=0; i<k; i++) {
-			code[len] = getEdgeValue(g, node, output[i]);
+			code[len] = (char)getEdgeValue(g, node, output[i]);
 			getCode(output[i], g, len+1, code, htable);
 		}
 	}

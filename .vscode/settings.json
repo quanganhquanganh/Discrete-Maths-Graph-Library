@@ -6,6 +6,7 @@
         "spanningtrees.h": "c",
         "components.h": "c",
         "graph.h": "c",
-        "prufer.h": "c"
+        "prufer.h": "c",
+        "iodot.h": "c"
     }
 }

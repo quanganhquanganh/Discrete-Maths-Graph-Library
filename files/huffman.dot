@@ -1,0 +1,28 @@
+digraph{
+	15 -> "11\nn" [color=blue, label=1];
+	15 -> "14\nx" [color=red, label=0];
+	16 -> "6\ne" [color=blue, label=1];
+	16 -> "8\nj" [color=red, label=0];
+	17 -> "3\nb" [color=blue, label=1];
+	17 -> "4\nc" [color=red, label=0];
+	18 -> "1\n blank" [color=red, label=0];
+	18 -> "17" [color=blue, label=1];
+	19 -> "15" [color=blue, label=1];
+	19 -> "16" [color=red, label=0];
+	20 -> "13\nv" [color=red, label=0];
+	20 -> "18" [color=blue, label=1];
+	21 -> "9\nk" [color=blue, label=1];
+	21 -> "12\ns" [color=red, label=0];
+	22 -> "10\nl" [color=blue, label=1];
+	22 -> "19" [color=red, label=0];
+	23 -> "7\ng" [color=blue, label=1];
+	23 -> "20" [color=red, label=0];
+	24 -> "2\na" [color=red, label=0];
+	24 -> "21" [color=blue, label=1];
+	25 -> "5\nd" [color=red, label=0];
+	25 -> "22" [color=blue, label=1];
+	26 -> "23" [color=red, label=0];
+	26 -> "24" [color=blue, label=1];
+	27 -> "25" [color=red, label=0];
+	27 -> "26" [color=blue, label=1];
+}

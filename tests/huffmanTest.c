@@ -1,4 +1,5 @@
 #include "../src/huffman.h"
+#include <stdio.h>
 
 int main()
 {

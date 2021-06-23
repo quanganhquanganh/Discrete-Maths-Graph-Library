@@ -1,4 +1,4 @@
-#include "../src/io/iodot.h"
+#include "../io/iodot.h"
 
 int main() {
     Graph g = createGraph();
