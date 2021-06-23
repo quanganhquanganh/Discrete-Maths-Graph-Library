@@ -1,6 +1,8 @@
 #include "prufer.h"
 
 #include "../libfdr/dllist.h"
+#include <stdlib.h>
+#include <string.h>
 
 int pruferInputGraph(FILE* f, Graph g) {
     int so_dinh = -1, id1 = -1, id2 = -1;
@@ -22,7 +24,8 @@ void prufer(Graph g, int output[], int* length) {
     *Malloc and initialize the vertices' degrees array (deg[]) 
     *with all zeroes
     */
-    int deg[1000] = {0};
+    int* deg = malloc(sizeof(int) * 10000);
+    memset(deg, 0, sizeof(int) * 10000);
     int outdeg[100], n, v_num;
     double* entry;
     /*
@@ -88,4 +91,5 @@ void prufer(Graph g, int output[], int* length) {
         min = 0;  
         while (deg[min] > 1) min++;
     }
+    free(deg);
 }

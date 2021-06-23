@@ -1,0 +1,16 @@
+digraph {
+	a [fillcolor = green, style = filled];
+	b [fillcolor = green, style = filled];
+	c [fillcolor = green, style = filled];
+	d [fillcolor = blue, style = filled];
+	e [fillcolor = yellow, style = filled];
+	f [fillcolor = purple, style = filled];
+	g [fillcolor = orange, style = filled];
+	h [fillcolor = aqua, style = filled];
+a -> b[label = 1];
+b -> c[label = 1];
+c -> a[label = 1];
+d -> e[label = 1];
+f -> g[label = 1];
+g -> h[label = 1];
+label=stronglyConnectComponent}

@@ -190,7 +190,8 @@ int outdegree (Graph graph, int v, int* output)
 
 void BFS(Graph graph, int start, int stop, void (*func)(int))
 {
-   int visited[1000] = {0};
+   int* visited = malloc(sizeof(int) * 10000);
+   memset(visited, 0, sizeof(int) * 10000);
    int n, output[100], i, u, v;
    Dllist node, queue;
    
@@ -206,7 +207,10 @@ void BFS(Graph graph, int start, int stop, void (*func)(int))
       {
           func(u);
           visited[u] = 1;
-          if ( u == stop ) return;           
+          if ( u == stop ) {
+            free(visited);
+            return;
+          }           
           n = outdegree(graph, u, output);
           for (i=0; i<n; i++)
           {
@@ -215,12 +219,14 @@ void BFS(Graph graph, int start, int stop, void (*func)(int))
                  dll_append(queue, new_jval_i(v));
           }
       }
-   }                            
+   }
+   free(visited);      
 }
 
 void DFS(Graph graph, int start, int stop, void (*func)(int))
 {
-   int visited[1000] = {0};
+   int* visited = malloc(sizeof(int) * 10000);
+   memset(visited, 0, sizeof(int) * 10000);
    int n, output[100], i, u, v;
    Dllist node, stack;
    
@@ -236,7 +242,10 @@ void DFS(Graph graph, int start, int stop, void (*func)(int))
       {
           func(u);
           visited[u] = 1;
-          if ( u == stop ) return;           
+          if ( u == stop ) {
+            free(visited);
+            return;
+          }                      
           n = outdegree(graph, u, output);
           for (i=0; i<n; i++)
           {
@@ -245,7 +254,8 @@ void DFS(Graph graph, int start, int stop, void (*func)(int))
                  dll_append(stack, new_jval_i(v));
           }
       }
-   }                            
+   }
+   free(visited);                     
 }
 
 int UAGUtil(Graph g, int v, int visited[], int parent)
@@ -283,7 +293,8 @@ int UAG(Graph g)
     // Mark all the vertices as not
     // visited and not part of recursion
     // stack
-   int visited[1000] = {0};
+   int* visited = malloc(sizeof(int) * 10000);
+   memset(visited, 0, sizeof(int) * 10000);
  
     // Call the recursive helper
     // function to detect cycle in different
@@ -292,23 +303,26 @@ int UAG(Graph g)
    {
       if (!visited[node->key.i])
       {
-         if (UAGUtil(g, node->key.i, visited, -1))
+         if (UAGUtil(g, node->key.i, visited, -1)) {
+            free(visited);
             return 1;
+         }
       }
    }
+   free(visited);
    return 0;
 }
 
 int DAG(Graph graph)
 {
-   int visited[1000];
+   int* visited = malloc(sizeof(int) * 10000);
    int n, output[100], i, u, v, start;
    Dllist node, stack;
    JRB vertex;
    
    jrb_traverse(vertex, graph.vertices)
    {
-       memset(visited, 0, sizeof(visited));
+       memset(visited, 0, sizeof(int) * 10000);
 
        start = jval_i(vertex->key);              
        stack = new_dllist();
@@ -326,14 +340,17 @@ int DAG(Graph graph)
               for (i=0; i<n; i++)
               {
                   v = output[i];
-                  if ( v == start ) // cycle detected 
+                  if ( v == start ) {// cycle detected 
+                     free(visited);
                      return u;
+                  }
                   if (!visited[v])    
                      dll_append(stack, new_jval_i(v));
               }
           }           
        }
    }
+   free(visited);
    return -1; // no cycle    
 }
 
@@ -352,7 +369,8 @@ void topologicalSort(Graph g, int* out, int* n) {
     queue = new_dllist();
     *n = 0;
     int o[1000];
-    int indega[1000] = {0};
+    int* indega = malloc(sizeof(int) * 10000);
+    memset(indega, 0, sizeof(int) * 10000);
     inDegArr(g, indega);
     jrb_traverse(vertex, g.vertices) {
         if(indega[jval_i(vertex->key)] == 0)
@@ -371,17 +389,19 @@ void topologicalSort(Graph g, int* out, int* n) {
             dll_append(queue, new_jval_i(o[i]));
       }
    }
+   free(indega);
 }
 
 double dijkstra(Graph g, int s, int t, int* path, int* length)
 {
-   double distance[1000], min, w, total;
-   int previous[1000], tmp[1000];
+   double* distance = malloc(sizeof(double) * 10000);
+   memset(distance, oo, sizeof(double) * 10000);
+   double min, w, total;
+   int* previous = malloc(sizeof(int) * 20000), *tmp = previous + 10000;
+   memset(previous, 0, sizeof(int) * 20000);
    int n, output[100], i, u, v, start;
    Dllist ptr, queue, node;
 
-   for (i=0; i<1000; i++)
-       distance[i] = oo;
    distance[s] = 0;
    previous[s] = s;
        
@@ -433,19 +453,25 @@ double dijkstra(Graph g, int s, int t, int* path, int* length)
            path[n-i-1] = tmp[i];
        *length = n;                
    }
+   free(distance);
+   free(previous);
    return total;   
 }
 
 double bellmanford(Graph g, int s, int t, int* path, int* length) {
-   double distance[1000], total;
-   int predecessor[1000], tmp[1000], out[100];
+   double* distance = malloc(sizeof(double) * 10000);
+   memset(distance, oo, sizeof(double) * 10000);
+   int* predecessor = malloc(sizeof(int) * 20000), *tmp = predecessor + 10000;
+   memset(predecessor, 0, sizeof(int) * 20000);
+   double total;
+   int out[100];
    int i, j;
    int u, v, w;
    int v_num, n;
    JRB vertex, edge;
 
-   for(i = 0; i < 1000; i++)
-      distance[i] = oo;
+   //for(i = 0; i < 1000; i++)
+   //   distance[i] = oo;
    distance[s] = 0;
 
    v_num = 0;
@@ -491,6 +517,8 @@ double bellmanford(Graph g, int s, int t, int* path, int* length) {
             path[n-i-1] = tmp[i];
       *length = n;                
    }
+   free(distance);
+   free(predecessor);
    return total;   
 }
 

@@ -14,7 +14,8 @@ void randomDirectedGraphInit(Graph g, int v_num, int e_num) {
     char buff[20] = {0};
     while(i < v_num) {
         sprintf(buff, "%d", i);
-        addVertex(g, i++, buff);
+        addVertex(g, i, buff);
+        i++;
     }
     for(int j = 0; j < e_num; ++j) {
         int l, n;
@@ -36,7 +37,8 @@ void randomUndirectedGraphInit(Graph g, int v_num, int e_num) {
     char buff[20] = {0};
     while(i < v_num) {
         sprintf(buff, "%d", i);
-        addVertex(g, i++, buff);
+        addVertex(g, i, buff);
+        i++;
     }
     for(int j = 0; j < e_num; ++j) {
         int l, n;

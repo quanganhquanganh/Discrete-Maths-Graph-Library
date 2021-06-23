@@ -1,12 +1,12 @@
 digraph {
-	0 [fillcolor = green, style = filled];
-	1 [fillcolor = green, style = filled];
-	2 [fillcolor = green, style = filled];
-	3 [fillcolor = blue, style = filled];
-	4 [fillcolor = blue, style = filled];
-	5 [fillcolor = yellow, style = filled];
-	6 [fillcolor = yellow, style = filled];
-	7 [fillcolor = yellow, style = filled];
+	0 [fillcolor = blue, style = filled];
+	1 [fillcolor = blue, style = filled];
+	2 [fillcolor = blue, style = filled];
+	3 [fillcolor = yellow, style = filled];
+	4 [fillcolor = yellow, style = filled];
+	5 [fillcolor = purple, style = filled];
+	6 [fillcolor = purple, style = filled];
+	7 [fillcolor = purple, style = filled];
 	0 -> 1 [dir=none];
 	0 -> 2 [dir=none];
 	1 -> 2 [dir=none];

@@ -40,7 +40,7 @@ void countComponentsUtil(Graph graph, int start, int stop, int *visited)
 int countConnected(Graph g) {
     JRB node;
     int dem = 0;
-    int visited[6000];
+    int* visited = malloc(sizeof(int) * 10000);
     memset(visited, 0, sizeof(visited));
     jrb_traverse(node, g.vertices)
     {
@@ -50,11 +50,12 @@ int countConnected(Graph g) {
             countComponentsUtil(g, node->key.i, -1, visited);
         }
     }
+    free(visited);
     return dem;
 }
 
-int DIST[6000];
-int onStack[6000];
+int* DIST; 
+int* onStack;
 int ids = -1, sscCount = -1;
 
 void TarjanDFS(Graph graph, int start, Dllist stack, int LOW[])
@@ -99,9 +100,11 @@ int countStronglyConnected(Graph g, int LOW[], int n)
 {
     JRB node;
     int dem, u;
+    DIST = malloc(sizeof(int) * 20000);
+    onStack = DIST + 10000;
     memset(LOW, -1, sizeof(int) * n);
-    memset(DIST, -1, sizeof(DIST));
-    memset(onStack, 0, sizeof(onStack));
+    memset(DIST, -1, sizeof(n) * 10000);
+    memset(onStack, 0, sizeof(n) * 10000);
     Dllist temp, stack;
 
     stack = new_dllist();
@@ -120,5 +123,6 @@ int countStronglyConnected(Graph g, int LOW[], int n)
     {
         removeEdge(g, node->key.i, node->key.i);
     }
+    free(DIST);
     return sscCount;
 }
