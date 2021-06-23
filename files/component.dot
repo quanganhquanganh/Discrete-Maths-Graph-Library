@@ -7,10 +7,10 @@ digraph {
 	5 [fillcolor = yellow, style = filled];
 	6 [fillcolor = yellow, style = filled];
 	7 [fillcolor = yellow, style = filled];
-	0 -- 1;
-	0 -- 2;
-	1 -- 2;
-	3 -- 4;
-	5 -- 6;
-	6 -- 7;
+	0 -> 1 [dir=none];
+	0 -> 2 [dir=none];
+	1 -> 2 [dir=none];
+	3 -> 4 [dir=none];
+	5 -> 6 [dir=none];
+	6 -> 7 [dir=none];
 }

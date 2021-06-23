@@ -42,7 +42,7 @@ void countComponentsOut(Graph g, const char* filename) {
     dll_traverse(node, edges) {
         double* edge = node->val.v;
         int l = edge[1], n = edge[2];
-        fprintf(f, "\t%d -- %d;\n", l, n);
+        fprintf(f, "\t%d -> %d [dir=none];\n", l, n);
     }
     fprintf(f, "}");
     fclose(f);
