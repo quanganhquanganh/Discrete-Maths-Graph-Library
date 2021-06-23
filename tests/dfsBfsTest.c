@@ -28,10 +28,13 @@ int main() {
     
     */
     Graph g = createGraph();
-    randomDirectedGraphInit(g, 10, 10);
-    BFS(g, 0, -1, addToArr);
+    randomUndirectedGraphInit(g, 12, 15);
+    JRB ptr; int n = 0;
+    jrb_traverse(ptr, g.vertices) n++;
+    printf("%d\n", n);
+    //BFS(g, 0, -1, addToArr);
     for(int j = 0; j < i; ++j)
         printf("%4d", arr[j]);
     printf("\n");
-    countStronglyComponentsOut(g, "../files/randomComponents");
+    countComponentsOut(g, "../files/randomComponents");
 }

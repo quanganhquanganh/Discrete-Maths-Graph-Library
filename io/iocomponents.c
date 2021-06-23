@@ -22,8 +22,9 @@ void countComponentsOut(Graph g, const char* filename) {
     int dem = 0, v_num = 0;
     int visited[10000];
 
-    memset(visited, 0, sizeof(visited));
     jrb_traverse(ptr, g.vertices) v_num++;
+    printf("%d\n", v_num);
+    memset(visited, 0, sizeof(visited));
     jrb_traverse(ptr, g.vertices)
     {
         if (!visited[ptr->key.i])
@@ -71,15 +72,17 @@ void countStronglyComponentsOut(Graph g, const char *filename)
 
     fprintf(f, "digraph {\n");
     jrb_traverse(ptr, g.vertices) v_num++;
+    /*
     for (int i = 0; i < v_num; i++)
     {
         cl[i] = LOW[i];
         printf("%d-%d\n", i, cl[i]);
-    }
+    }*/
     for (int i = 0; i < v_num; i++)
     {
+        /*
         printf("%d-%d\n", i, LOW[i]);
-
+        
         if (LOW[i] != i)
         {
             dem++;
@@ -87,10 +90,10 @@ void countStronglyComponentsOut(Graph g, const char *filename)
         }
         else
             LOW[i] -= dem;
-        printf("---------%d-%d\n", i, LOW[i]);
+        printf("---------%d-%d\n", i, LOW[i]);*/
 
         if (LOW[i] <= MAX_COLOR)
-            fprintf(f, "\t%s [fillcolor = %s, style = filled];\n", getVertex(g, i), color[LOW[i] + 1]);
+            fprintf(f, "\t%s [fillcolor = %s, style = filled];\n", getVertex(g, i), color[LOW[i] % MAX_COLOR]);
     }
 
     int v, n, ou[10000];
