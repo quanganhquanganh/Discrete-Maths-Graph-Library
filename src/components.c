@@ -39,7 +39,7 @@ void countComponentsUtil(Graph graph, int start, int stop, int *visited)
 
 int countConnected(Graph g) {
     JRB node;
-    int dem;
+    int dem = 0;
     int visited[6000];
     memset(visited, 0, sizeof(visited));
     jrb_traverse(node, g.vertices)
@@ -95,11 +95,11 @@ void TarjanDFS(Graph graph, int start, Dllist stack, int LOW[])
     }
 }
 
-int countStronglyConnected(Graph g, int LOW[])
+int countStronglyConnected(Graph g, int LOW[], int n)
 {
     JRB node;
     int dem, u;
-    memset(LOW, -1, sizeof(LOW));
+    memset(LOW, -1, sizeof(int) * n);
     memset(DIST, -1, sizeof(DIST));
     memset(onStack, 0, sizeof(onStack));
     Dllist temp, stack;

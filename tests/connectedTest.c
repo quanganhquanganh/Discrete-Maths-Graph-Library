@@ -49,7 +49,7 @@ void testStrong() {
     addEdge(g, 3, 4, 1);
     addEdge(g, 4, 0, 1);
 
-    printf("Tong so thanh phan lien thong manh: %d\n", countStronglyConnected(g, LOW));
+    printf("Tong so thanh phan lien thong manh: %d\n", countStronglyConnected(g, LOW, 1000));
     
     dropGraph(g);
 }
