@@ -11,7 +11,11 @@ void randomDirectedGraphInit(Graph g, int v_num, int e_num) {
     v_num = (v_num > MAX_V_NUM)? MAX_V_NUM : v_num;
     e_num = (e_num > MAX_E_NUM)? MAX_E_NUM : e_num;
     int i = 0;
-    while(i < v_num) addVertex(g, i++, "test");
+    char buff[20] = {0};
+    while(i < v_num) {
+        sprintf(buff, "%d", i);
+        addVertex(g, i++, buff);
+    }
     for(int j = 0; j < e_num; ++j) {
         int l, n;
         l = rand() % v_num;
@@ -28,7 +32,11 @@ void randomUndirectedGraphInit(Graph g, int v_num, int e_num) {
     e_num = (e_num > MAX_E_NUM)? MAX_E_NUM : e_num;
     g = createGraph();
     int i = 0;
-    while(i < v_num) addVertex(g, i++, "test");
+    char buff[5] = {0};
+    while(i < v_num) {
+        sprintf(buff, "%d", i);
+        addVertex(g, i++, buff);
+    }
     for(int j = 0; j < e_num; ++j) {
         int l, n;
         l = rand() % v_num;

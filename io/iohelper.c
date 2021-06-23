@@ -1,10 +1,10 @@
 #include "iodot.h"
 
 const char *color[]={
-    "","red","green","blue","yellow","purple",
+    "dimgray","red","green","blue","yellow","purple",
     "orange","aqua","bisque","darkolivegreen1","gray50","maroon","wheat3",
     "blueviolet", "chocolate", "cyan", "darkgreen", "darkorange", "firebrick",
-    "lawngreen", "gold", "darkkhaki", "salmon", "dimgrey"
+    "lawngreen", "gold", "darkkhaki", "salmon"
 };
 const int MAX_COLOR = sizeof(color) / sizeof(*color);
 
