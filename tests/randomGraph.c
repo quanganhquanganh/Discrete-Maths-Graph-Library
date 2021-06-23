@@ -24,7 +24,7 @@ void randomDirectedGraphInit(Graph g, int v_num, int e_num) {
         } while((getEdgeValue(g, l, n) != oo) || (getEdgeValue(g, n, l) != oo) || (n==l));
         val = rand() % 20 + 1;
         addEdge(g, l, n, val);
-        printf("Random edge: %d -- %d: %lf\n", l, n, val);
+        printf("Random edge: %d -> %d: %lf\n", l, n, val);
     }
 }
 
@@ -32,26 +32,21 @@ void randomUndirectedGraphInit(Graph g, int v_num, int e_num) {
     srand(time(NULL)); double val;
     v_num = (v_num > MAX_V_NUM)? MAX_V_NUM : v_num;
     e_num = (e_num > MAX_E_NUM)? MAX_E_NUM : e_num;
-    g = createGraph();
     int i = 0;
-    char buff[5] = {0};
+    char buff[20] = {0};
     while(i < v_num) {
         sprintf(buff, "%d", i);
         addVertex(g, i++, buff);
     }
-    int sd = 0;
-    JRB ptr;
-    jrb_traverse(ptr, g.vertices) sd++;
-    printf("%d\n", sd);
-    
     for(int j = 0; j < e_num; ++j) {
         int l, n;
         l = rand() % v_num;
         do {
             n = rand() % v_num;
-        } while(getEdgeValue(g, l, n) != oo);
+        } while((getEdgeValue(g, l, n) != oo) || (n==l));
         val = rand() % 20 + 1;
         addEdge(g, l, n, val);
         addEdge(g, n, l, val);
+        printf("Random edge: %d -- %d: %lf\n", l, n, val);
     }
 }
