@@ -395,7 +395,8 @@ void topologicalSort(Graph g, int* out, int* n) {
 double dijkstra(Graph g, int s, int t, int* path, int* length)
 {
    double* distance = malloc(sizeof(double) * 10000);
-   memset(distance, oo, sizeof(double) * 10000);
+   for(int i = 0; i < 10000; ++i) 
+      distance[i] = oo;
    double min, w, total;
    int* previous = malloc(sizeof(int) * 20000), *tmp = previous + 10000;
    memset(previous, 0, sizeof(int) * 20000);
@@ -460,7 +461,8 @@ double dijkstra(Graph g, int s, int t, int* path, int* length)
 
 double bellmanford(Graph g, int s, int t, int* path, int* length) {
    double* distance = malloc(sizeof(double) * 10000);
-   memset(distance, oo, sizeof(double) * 10000);
+   for(int i = 0; i < 10000; ++i) 
+      distance[i] = oo;
    int* predecessor = malloc(sizeof(int) * 20000), *tmp = predecessor + 10000;
    memset(predecessor, 0, sizeof(int) * 20000);
    double total;
