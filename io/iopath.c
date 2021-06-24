@@ -13,7 +13,10 @@ void dijkstraOut(Graph g, int s, int t, const char* output) {
     int i, length, path[100];
     double w;
     w = dijkstra(g, s, t, path, &length);
-
+    if(w == oo) {
+        printf("Couldn't find a path between two specified points.\n");
+        return;
+    }
     char dotFile[100] = {0}, pdfFile[100] = {0};
 
     strcat(dotFile, output);
@@ -31,6 +34,7 @@ void dijkstraOut(Graph g, int s, int t, const char* output) {
          for (i=0; i<length; i++)
             if(i == length-1) printf(" => %s",getVertex(g, path[i]));
             else printf(" => %s (%lg)", getVertex(g, path[i]),getEdgeValue(g,path[i],path[i+1]));
+        printf("\n");
     }
 
     FILE *fp = fopen(dotFile,"w+");
@@ -42,7 +46,7 @@ void dijkstraOut(Graph g, int s, int t, const char* output) {
         if(inpath(all->key.i,path,length)){
             fprintf(fp,"\t%d [fillcolor = yellow, style=filled];\n",all->key.i);
         }
-        else fprintf(fp,"\t%d [xlabel = \"Hey fucker\"];\n",all->key.i);
+        else fprintf(fp,"\t%d [xlabel = \"%s\"];\n",all->key.i, all->val.i);
     }
     dll_traverse(node,list){
         double *entry = jval_v(node->val);
@@ -64,6 +68,10 @@ void bellmanfordOut(Graph g, int s, int t, const char* output) {
     int i, length, path[100];
     double w;
     w = bellmanford(g, s, t, path, &length);
+    if(w == oo) {
+        printf("Couldn't find a path between two specified points.\n");
+        return;
+    }
 
     char dotFile[100] = {0}, pdfFile[100] = {0};
 
@@ -82,6 +90,7 @@ void bellmanfordOut(Graph g, int s, int t, const char* output) {
          for (i=0; i<length; i++)
             if(i == length-1) printf(" => %s",getVertex(g, path[i]));
             else printf(" => %s (%lg)", getVertex(g, path[i]),getEdgeValue(g,path[i],path[i+1]));
+        printf("\n");
     }
 
 
@@ -94,7 +103,7 @@ void bellmanfordOut(Graph g, int s, int t, const char* output) {
         if(inpath(all->key.i,path,length)){
             fprintf(fp,"\t%d [fillcolor = yellow, style=filled];\n",all->key.i);
         }
-        else fprintf(fp,"\t%d [xlabel = \"Hey fucker\"];\n",all->key.i);
+        else fprintf(fp,"\t%d [xlabel = \"%s\"];\n",all->key.i, all->val.i);
     }
     dll_traverse(node,list){
         double *entry = jval_v(node->val);

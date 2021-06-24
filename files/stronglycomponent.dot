@@ -1,16 +1,24 @@
 digraph {
-	a [fillcolor = green, style = filled];
-	b [fillcolor = green, style = filled];
-	c [fillcolor = green, style = filled];
-	d [fillcolor = blue, style = filled];
-	e [fillcolor = yellow, style = filled];
-	f [fillcolor = purple, style = filled];
-	g [fillcolor = orange, style = filled];
-	h [fillcolor = aqua, style = filled];
-a -> b[label = 1];
-b -> c[label = 1];
-c -> a[label = 1];
-d -> e[label = 1];
-f -> g[label = 1];
-g -> h[label = 1];
+	0 [fillcolor = red, style = filled];
+	1 [fillcolor = darkolivegreen1, style = filled];
+	2 [fillcolor = purple, style = filled];
+	3 [fillcolor = blue, style = filled];
+	4 [fillcolor = green, style = filled];
+	5 [fillcolor = aqua, style = filled];
+	6 [fillcolor = bisque, style = filled];
+	7 [fillcolor = green, style = filled];
+	8 [fillcolor = gray50, style = filled];
+	9 [fillcolor = green, style = filled];
+0 -> 7[label = 18];
+0 -> 9[label = 2];
+4 -> 2[label = 2];
+4 -> 9[label = 19];
+6 -> 5[label = 7];
+7 -> 3[label = 3];
+7 -> 4[label = 15];
+7 -> 6[label = 5];
+8 -> 4[label = 12];
+9 -> 3[label = 10];
+9 -> 5[label = 17];
+9 -> 7[label = 19];
 label=stronglyConnectComponent}

@@ -18,6 +18,10 @@ void dagOut(Graph g, const char* output) {
     int pathr[100] = {-oo};
     int lengthr;
     int to = DAG(g);
+    if(to == -1) {
+        printf("Can't find a topo order.\n");
+        return;
+    }
     char dotFile[100] = {0}, pdfFile[100] = {0};
 
     strcat(dotFile, output);
@@ -27,9 +31,6 @@ void dagOut(Graph g, const char* output) {
     strcat(pdfFile, ".pdf");
 
     double disf,disr;
-    jrb_traverse(ptr,g.vertices){
-        addEdge(g, node->key.i, node->key.i, 1);
-    }
     jrb_traverse(node,g.vertices){
         int v = node->key.i;
         disf = dijkstra(g,v,to,pathf,&lengthf);
@@ -42,7 +43,7 @@ void dagOut(Graph g, const char* output) {
             memset(pathr, -oo, sizeof(pathr));
         }
     }
-    if(disf==oo||disr==oo){
+    if(disf==oo||disr==oo||lengthf==0||lengthr==0){
         printf("No cycle\n");
         exit(0);
     }
@@ -68,9 +69,6 @@ void dagOut(Graph g, const char* output) {
                 fprintf(fp,"\t%d -> %d[label= %lg];\n",node->key.i,output[i],getEdgeValue(g,node->key.i,output[i]));
             }
         }
-    }
-    jrb_traverse(ptr,g.vertices){
-        removeEdge(g, node->key.i, node->key.i);
     }
     fprintf(fp,"}\n");
     fclose(fp);

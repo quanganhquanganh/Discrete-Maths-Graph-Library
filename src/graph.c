@@ -391,18 +391,17 @@ void topologicalSort(Graph g, int* out, int* n) {
    }
    free(indega);
 }
-
+/*
 double dijkstra(Graph g, int s, int t, int* path, int* length)
 {
-   double* distance = malloc(sizeof(double) * 10000);
-   for(int i = 0; i < 10000; ++i) 
-      distance[i] = oo;
-   double min, w, total;
-   int* previous = malloc(sizeof(int) * 20000), *tmp = previous + 10000;
-   memset(previous, 0, sizeof(int) * 20000);
+   double* distance = malloc(sizeof(double) * 10000), min, w, total;
+   int* previous = malloc(sizeof(double) * 20000), 
+   *tmp = previous + 10000;
    int n, output[100], i, u, v, start;
    Dllist ptr, queue, node;
 
+   for (i=0; i<10000; i++)
+       distance[i] = oo;
    distance[s] = 0;
    previous[s] = s;
        
@@ -457,6 +456,85 @@ double dijkstra(Graph g, int s, int t, int* path, int* length)
    free(distance);
    free(previous);
    return total;   
+}
+*/
+
+double dijkstra(Graph g, int s, int t, int* path, int* length)
+{
+   double *d = malloc(10000 * sizeof(double)), min, w, total; //khoang cach tu diem dau
+    for(int i = 0; i < 10000; i++)
+    {
+        d[i] = oo;
+    }
+    d[s] = 0;
+    int *diemtruoc = (int *)malloc(10000 * sizeof(int));
+    int *check = (int *)calloc(10000, sizeof(int)); //visited
+    Dllist queue = new_dllist(), node, ptr;
+    dll_append(queue, new_jval_i(s));
+    int u, v;
+    int n;
+    int output[1000];
+    JRB tmp, tmp1, tmp2;
+    while( !dll_empty(queue) )
+    {
+        min = oo;   
+      dll_traverse(ptr, queue)
+      {
+          u = jval_i(ptr->val);              
+          if (min > d[u])
+          {
+             min = d[u];
+             node = ptr;
+          }                 
+      }
+      u = jval_i(node->val);
+      dll_delete_node(node);
+
+      if (u == t) break;
+
+        n = outdegree(g, u, output);
+        tmp = jrb_find_int(g.edges, u);
+        if(check[u] == 0)
+        {
+            for(int i = 0; i < n; i++)
+            {
+               v = output[i];
+               w = getEdgeValue(g, u, v);
+                dll_append(queue, new_jval_i(output[i]));
+                if(d[output[i]] == 1000)
+                {
+                    d[v] = w + d[u];
+                    diemtruoc[v] = u;
+                }
+                else if(w + d[u] < d[v])
+                {
+                    d[v] = w + d[u];
+                    diemtruoc[v] = u;
+                }
+
+            }
+        }
+        check[u] = 1;
+    }
+    total = d[t];
+    if(total != oo) {
+    int arr[100];
+    int x = 0;
+    int m = t;
+    while(m != s)
+    {
+        arr[x++] = m;
+        m = diemtruoc[m];
+    }
+    arr[x++] = s;
+    *length = 0;
+    for(int i = x - 1; i >= 0; i--)
+    {
+        path[(*length)++] = arr[i];
+        //printf("%s ", getVertex(g, arr[i]));
+    }
+    }
+    return total;
 }
 
 double bellmanford(Graph g, int s, int t, int* path, int* length) {
