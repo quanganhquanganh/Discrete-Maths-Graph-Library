@@ -1,11 +1,12 @@
-CFLAGS = -O
-OBJS = dllist.o fields.o jval.o jrb.o
-
-all: libfdr.a
-
-libfdr.a: $(OBJS)
-	ar ru libfdr.a $(OBJS)
-	ranlib libfdr.a 
+all: 
+	gcc -c ./src/*.c
+	gcc -c ./io/*.c
+	gcc -c ./tests/*.c
+	gcc -c ./libfdr/*.c
+	ar ru ./lib/libfdr.a ./libfdr/*.o
+	ranlib ./lib/libfdr.a 
+	ar ru ./lib/libio.a ./libfdr/*.o ./io/*.o ./src/graph.o
+	ar ru ./lib/libgrp.a ./libfdr/*.o ./src/*.o
 
 clean:
-	rm -f core *.o libfdr.a
+	rm -f core *.o all
