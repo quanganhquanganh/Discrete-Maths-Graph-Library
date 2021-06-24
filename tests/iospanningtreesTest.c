@@ -1,4 +1,5 @@
 #include "../io/iodot.h"
+#include "randomGraph.c"
 
 void primTest() {
     Graph g = createGraph(), tree = createGraph();
@@ -63,8 +64,12 @@ void kruskalTest() {
 }
 
 int main() {
+    Graph g = createGraph(), tree = createGraph();
+    randomUndirectedGraphInit(g, 10, 15);
     printf("Prim Algorithm: \n");
-    primTest();
+    primOut(g, tree, "../files/prim");
+    dropGraph(tree); tree = createGraph();
     printf("Kruskal Algorithm: \n");
-    kruskalTest();
+    kruskalOut(g, tree, "../files/kruskal");
+    dropGraph(g); dropGraph(tree);
 }

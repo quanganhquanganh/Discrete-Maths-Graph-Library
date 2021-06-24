@@ -29,9 +29,9 @@ int main() {
     */
     Graph g = createGraph();
     randomDirectedGraphInit(g, 10, 12);
-    //BFS(g, 0, -1, addToArr);
+    BFS(g, 0, -1, addToArr);
     for(int j = 0; j < i; ++j)
         printf("%4d", arr[j]);
     printf("\n");
-    countStronglyComponentsOut(g, "../files/randomComponents");
+    //countStronglyComponentsOut(g, "../files/randomComponents");
 }

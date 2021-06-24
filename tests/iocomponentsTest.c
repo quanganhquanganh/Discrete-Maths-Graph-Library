@@ -1,4 +1,5 @@
 #include "../io/iodot.h"
+#include "randomGraph.c"
 
 void componentsTest() {
     Graph g = createGraph();
@@ -63,6 +64,10 @@ void stronglyComponentsTest() {
 }
 
 int main() {
-    componentsTest();
-    stronglyComponentsTest();
+    Graph g = createGraph();
+    randomUndirectedGraphInit(g, 10, 12);
+    countComponentsOut(g, "../files/component");; dropGraph(g);
+    g = createGraph();
+    randomDirectedGraphInit(g, 10, 12);
+    countStronglyComponentsOut(g, "../files/stronglycomponent");
 }

@@ -12,7 +12,7 @@ int inpath_dag(int *pathf,int *pathr,int id,int lengthf,int lengthr){
 
 void dagOut(Graph g, const char* output) {
     layout = CIRCO;
-    JRB node;
+    JRB node, ptr;
     int pathf[100] = {-oo};
     int lengthf;
     int pathr[100] = {-oo};
@@ -27,6 +27,9 @@ void dagOut(Graph g, const char* output) {
     strcat(pdfFile, ".pdf");
 
     double disf,disr;
+    jrb_traverse(ptr,g.vertices){
+        addEdge(g, node->key.i, node->key.i, 1);
+    }
     jrb_traverse(node,g.vertices){
         int v = node->key.i;
         disf = dijkstra(g,v,to,pathf,&lengthf);
@@ -65,6 +68,9 @@ void dagOut(Graph g, const char* output) {
                 fprintf(fp,"\t%d -> %d[label= %lg];\n",node->key.i,output[i],getEdgeValue(g,node->key.i,output[i]));
             }
         }
+    }
+    jrb_traverse(ptr,g.vertices){
+        removeEdge(g, node->key.i, node->key.i);
     }
     fprintf(fp,"}\n");
     fclose(fp);

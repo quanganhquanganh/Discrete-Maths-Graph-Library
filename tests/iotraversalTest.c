@@ -1,7 +1,8 @@
 #include "../io/iodot.h"
+#include "randomGraph.c"
 
 int main() {
-    Graph g = createGraph();
+    Graph g = createGraph();/*
     addVertex(g,0,"0");
     addVertex(g,1,"1");
     addVertex(g,2,"2");
@@ -19,7 +20,8 @@ int main() {
     addEdge(g,4,5,1);
     addEdge(g,2,1,3);
     addEdge(g,5,6,3);
-    addEdge(g,1,4,2);
+    addEdge(g,1,4,2);*/
+    randomDirectedGraphInit(g, 6, 10);
     bfsOut(g, 1, 5, "../files/bfs");
     dfsOut(g, 1, 5, "../files/dfs");
     dropGraph(g);
