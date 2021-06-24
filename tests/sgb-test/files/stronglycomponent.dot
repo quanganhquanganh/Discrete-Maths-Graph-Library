@@ -1,0 +1,24 @@
+digraph {
+	0 [fillcolor = red, style = filled];
+	1 [fillcolor = green, style = filled];
+	2 [fillcolor = purple, style = filled];
+	3 [fillcolor = yellow, style = filled];
+	4 [fillcolor = darkolivegreen1, style = filled];
+	5 [fillcolor = gray50, style = filled];
+	6 [fillcolor = orange, style = filled];
+	7 [fillcolor = bisque, style = filled];
+	8 [fillcolor = blue, style = filled];
+	9 [fillcolor = aqua, style = filled];
+1 -> 8[label = 4];
+2 -> 6[label = 2];
+4 -> 2[label = 12];
+4 -> 5[label = 3];
+4 -> 6[label = 18];
+4 -> 7[label = 5];
+4 -> 8[label = 19];
+5 -> 8[label = 19];
+6 -> 9[label = 19];
+8 -> 3[label = 13];
+9 -> 3[label = 14];
+9 -> 7[label = 5];
+label=stronglyConnectComponent}

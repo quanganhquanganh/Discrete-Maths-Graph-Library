@@ -1,0 +1,27 @@
+digraph G {
+0 [fillcolor=green, style=filled];
+1 [fillcolor=green, style=filled];
+2 [fillcolor=red, style=filled];
+2 -> 0 [dir=none] [label = 11][style =bold] [color =red ];
+2 -> 1 [dir=none] [label = 19];
+3 [fillcolor=green, style=filled];
+3 -> 2 [dir=none] [label = 19];
+4 [fillcolor=red, style=filled];
+4 -> 0 [dir=none] [label = 17];
+4 -> 1 [dir=none] [label = 13][style =bold] [color =red ];
+4 -> 3 [dir=none] [label = 19];
+5 [fillcolor=red, style=filled];
+5 -> 3 [dir=none] [label = 5][style =bold] [color =red ];
+6 [fillcolor=blue, style=filled];
+6 -> 1 [dir=none] [label = 4][style =bold] [color =red ];
+6 -> 2 [dir=none] [label = 6][style =bold] [color =red ];
+6 -> 3 [dir=none] [label = 5][style =bold] [color =red ];
+7 [fillcolor=blue, style=filled];
+7 -> 0 [dir=none] [label = 8][style =bold] [color =red ];
+7 -> 2 [dir=none] [label = 14];
+7 -> 4 [dir=none] [label = 20];
+8 [fillcolor=red, style=filled];
+8 -> 0 [dir=none] [label = 2][style =bold] [color =red ];
+9 [fillcolor=red, style=filled];
+9 -> 1 [dir=none] [label = 9][style =bold] [color =red ];
+}

@@ -1,0 +1,24 @@
+digraph {
+	0 [fillcolor = blue, style = filled];
+	1 [fillcolor = yellow, style = filled];
+	2 [fillcolor = yellow, style = filled];
+	3 [fillcolor = yellow, style = filled];
+	4 [fillcolor = yellow, style = filled];
+	5 [fillcolor = yellow, style = filled];
+	6 [fillcolor = yellow, style = filled];
+	7 [fillcolor = yellow, style = filled];
+	8 [fillcolor = yellow, style = filled];
+	9 [fillcolor = yellow, style = filled];
+	1 -> 8 [dir=none];
+	2 -> 4 [dir=none];
+	2 -> 6 [dir=none];
+	3 -> 8 [dir=none];
+	3 -> 9 [dir=none];
+	4 -> 5 [dir=none];
+	4 -> 6 [dir=none];
+	4 -> 7 [dir=none];
+	4 -> 8 [dir=none];
+	5 -> 8 [dir=none];
+	6 -> 9 [dir=none];
+	7 -> 9 [dir=none];
+}
