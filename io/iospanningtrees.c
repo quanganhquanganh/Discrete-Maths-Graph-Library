@@ -145,7 +145,7 @@ void kruskalOut(Graph g, Graph tree, const char* output) {
     strcat(dotname, output); strcat(dotname, ".dot");
     strcat(pdfname, output); strcat(pdfname, ".pdf");
     FILE* is = open_file(dotname, "w+");
-    if(primAlgo(g, tree) == 1) {
+    if(kruskalAlgo(g, tree) == 1) {
         outputfileMST(g, tree, is);
         dot_to_pdf(dotname, pdfname);
     } else printf("Couldn't find any spanning tree.\n");
